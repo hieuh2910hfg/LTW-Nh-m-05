@@ -104,7 +104,7 @@
     <nav class="top-nav">
       <ul>
         <li><a href="${pageContext.request.contextPath}/jsp/index.jsp">Trang Chủ</a></li>
-        <li><a href="${pageContext.request.contextPath}/products">Sản Phẩm</a></li>
+        <li><a href="${pageContext.request.contextPath}/products?category=0">Sản Phẩm</a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a></li>
         <li><a href="${pageContext.request.contextPath}/login" class="login-button">Đăng nhập</a></li>
@@ -135,7 +135,10 @@
     selectedProducts = (List<Product>) request.getAttribute("vaynu");
   }else if ("8".equals(categoryParam)) {
     selectedProducts = (List<Product>) request.getAttribute("phukien");
-  }
+  }else if ("0".equals(categoryParam)) {
+       selectedProducts = (List<Product>) request.getAttribute("allProducts");
+     }
+
 %>
 
 <h2>Danh sách sản phẩm</h2>
@@ -152,9 +155,16 @@
     for (Product product : selectedProducts) {
   %>
   <div class="product-card">
-    <div class="product-square"></div>
+    <div class="product-square">
+
+          <a href="<%= request.getContextPath() %>/productDetail.jsp">
+                  <img src="<%= product.getProductLinks() %>" alt="<%= product.getDescription() %>" class="product-image"/>
+                </a>
+        </div>
     <div class="product-info">
-      <h3><%= product.getDescription() %></h3>
+      <a href="<%= request.getContextPath() %>/productDetail.jsp">
+              <h3><%= product.getDescription() %></h3>
+            </a>
       <p><%= product.getPrice() %> VND</p>
     </div>
   </div>
@@ -171,7 +181,7 @@
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 100px;
   }
 
   .product-card {
@@ -181,10 +191,20 @@
   .product-square {
     width: 300px;
     height: 300px;
-    background-color: #f0f8ff; /* Màu sắc cho khung hình vuông */
+    background-color: #f0f8ff; /* Màu nền khung ô vuông */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 0 auto; /* Căn giữa ô vuông */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ẩn phần hình ảnh tràn ra ngoài */
+  }
+
+  .product-square img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Cắt ảnh để vừa khung */
   }
 
   .product-info {
@@ -200,7 +220,6 @@
     font-size: 14px;
     color: #888;
   }
-
 </style>
 
 

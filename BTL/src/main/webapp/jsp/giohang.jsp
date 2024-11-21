@@ -102,7 +102,7 @@
     <nav class="top-nav">
       <ul>
         <li><a href="${pageContext.request.contextPath}/jsp/index.jsp">Trang Chủ</a></li>
-        <li><a href="${pageContext.request.contextPath}/products">Sản Phẩm</a></li>
+        <li><a href="${pageContext.request.contextPath}/products?category=0">Sản Phẩm</a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a></li>
         <li><a href="${pageContext.request.contextPath}/login" class="login-button">Đăng nhập</a></li>
