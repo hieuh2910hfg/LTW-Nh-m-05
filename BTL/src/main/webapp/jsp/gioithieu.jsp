@@ -90,30 +90,71 @@
       bottom: 0;
       width: 100%;
     }
+    /* Dropdown menu styles */
+                              .dropdown {
+                                  position: relative;
+                                  display: inline-block;
+                              }
+
+                              .dropdown-content {
+                                  display: none;
+                                  position: absolute;
+                                  background-color: #222222;
+                                  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                                  padding: 12px 16px;
+                                  z-index: 1;
+                              }
+
+                              .dropdown:hover .dropdown-content {
+                                  display: block;
+                              }
+
+                              .dropdown-content a {
+                                  display: block;
+                                  color: black;
+                                  text-decoration: none;
+                                  padding: 8px 0;
+                              }
+
+                              .dropdown-content a:hover {
+                                  background-color: #ddd;
+                              }
   </style>
 </head>
 <body>
 <header>
-  <div class="top-bar">
-    <div class="contact-info">
-      <span class="language">Tên Web</span>
+    <div class="top-bar">
+       <div class="landing-page">
+              <a href= "${pageContext.request.contextPath}/jsp/index.jsp">
+              <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" width = 250px height = 75px>
+          </a>
+       </div>
 
+        <nav class="top-nav">
+            <ul>
+                <li></li>
+                <!-- Dropdown menu for products -->
+                <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/products?category=0">Sản Phẩm</a>
+                    <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/products?category=1">Áo Nam</a>
+                        <a href="${pageContext.request.contextPath}/products?category=2">Quần Nam</a>
+                        <a href="${pageContext.request.contextPath}/products?category=3">Giày Nam</a>
+                        <a href="${pageContext.request.contextPath}/products?category=4">Áo Nữ</a>
+                        <a href="${pageContext.request.contextPath}/products?category=5">Quần Nữ</a>
+                        <a href="${pageContext.request.contextPath}/products?category=6">Giày Nữ</a>
+                        <a href="${pageContext.request.contextPath}/products?category=7">Váy Nữ</a>
+                        <a href="${pageContext.request.contextPath}/products?category=8">Phụ Kiện</a>
+                    </div>
+                </li>
+                <li><a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/login" class="login-button">Đăng nhập</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/toi.jsp">Tôi</a></li>
+            </ul>
+        </nav>
     </div>
-    <nav class="top-nav">
-      <ul>
-        <ul>
-          <li><a href="${pageContext.request.contextPath}/jsp/index.jsp">Trang Chủ</a></li>
-          <li><a href="${pageContext.request.contextPath}/products?category=0">Sản Phẩm</a></li>
-          <li><a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a></li>
-          <li><a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a></li>
-          <li><a href="${pageContext.request.contextPath}/login" class="login-button">Đăng nhập</a></li>
-          <li><a href="${pageContext.request.contextPath}/jsp/toi.jsp">Tôi</a></li>
-        </ul>
-      </ul>
-    </nav>
-  </div>
 </header>
-
 
 
 <section class="about-section">

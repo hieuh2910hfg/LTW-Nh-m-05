@@ -22,6 +22,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Chuyển hướng đến trang đăng ký
         RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/register.jsp");
         dispatcher.forward(request, response);
     }
@@ -29,6 +30,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Thiết lập mã hóa
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
@@ -40,14 +42,17 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String phonenumber = request.getParameter("phonenumber");
 
-        // Gọi DAO để đăng ký người dùng và tạo giỏ hàng
+        // Gọi DAO để đăng ký người dùng
         boolean isRegistered = userRegister.registerUser(firstname, lastname, username, passwordHash, email, phonenumber);
 
-        // Phản hồi cho người dùng dựa trên kết quả đăng ký
         if (isRegistered) {
-            response.getWriter().print("Registered successfully!");
+            // Đăng ký thành công, chuyển đến trang login.jsp
+            response.sendRedirect("login");
         } else {
-            response.getWriter().print("Registration failed!");
+            // Đăng ký thất bại, hiển thị thông báo lỗi
+            request.setAttribute("errorMessage", "Đăng ký thất bại. Vui lòng thử lại.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/register.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }
