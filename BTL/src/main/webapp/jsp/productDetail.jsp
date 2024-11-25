@@ -1,7 +1,10 @@
-<%@ page import="model.Product, DAO.ProductDAO" %>
+<%@ page import="model.Product, DAO.ProductDAO,model.User" %>
+<%@ page import="jakarta.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     // Lấy productId từ tham số request
+User user = (User) session.getAttribute("validateUser");
     String productIdParam = request.getParameter("productId");
     Product product = null;
 
@@ -69,9 +72,29 @@
                     <li>Đổi trong vòng 3 ngày</li>
                     <li>Thanh toán khi nhận hàng</li>
                 </ul>
-            </div>
-            <a href="muahang.jsp" class="btn-buy">Mua ngay</a>
-        </div>
+                <div>
+                <%
+                if (user == null) {
+                %>
+
+							<a href="${pageContext.request.contextPath}/login" class="btn-buy">Mua ngay</a>
+						
+							<a href="${pageContext.request.contextPath}/login" class="btn-buy">Thêm vào Gió Hàng</a>
+							<% 
+							} else {
+							%>
+							<a href="muahang.jsp" class="btn-buy">Mua ngay</a>
+            				<button type="submit" class="btn-buy" formaction="./AddToCartServlet?cid=<%= user.getCustomerId() %>
+            				&pid=<%= product.getProductId()%>">
+            				Thêm vào Gió Hàng
+            				</button>
+        	<%
+			}
+			%>
+                </div>
+            				
+
+            
     </div>
     <%
     } else {
