@@ -1,6 +1,6 @@
 package servlet;
 
-import DAO.UserRegister;
+import DAO.UserDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,11 +13,11 @@ import java.io.IOException;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserRegister userRegister;
+    private UserDAO userDAO;
 
     @Override
     public void init() throws ServletException {
-        userRegister = new UserRegister();
+        userDAO = new UserDAO();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
         String phonenumber = request.getParameter("phonenumber");
 
         // Gọi DAO để đăng ký người dùng
-        boolean isRegistered = userRegister.registerUser(firstname, lastname, username, passwordHash, email, phonenumber);
+        boolean isRegistered = userDAO.registerUser(firstname, lastname, username, passwordHash, email, phonenumber);
 
         if (isRegistered) {
             // Đăng ký thành công, chuyển đến trang login.jsp
