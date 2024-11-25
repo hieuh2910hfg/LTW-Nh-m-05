@@ -78,20 +78,20 @@ User user = (User) session.getAttribute("validateUser");
                 if (user == null) {
                 %>
 
-							<a href="${pageContext.request.contextPath}/login" class="btn-buy">Mua ngay</a>
+			<a href="${pageContext.request.contextPath}/login" class="btn-buy">Mua ngay</a>
 						
-							<a href="${pageContext.request.contextPath}/login" class="btn-buy">Thêm vào Gió Hàng</a>
-							<% 
-							} else {
-							%>
-							<a href="muahang.jsp" class="btn-buy">Mua ngay</a>
-            				<button type="submit" class="btn-buy" formaction="./AddToCartServlet?cid=<%= user.getCustomerId() %>
-            				&pid=<%= product.getProductId()%>">
-            				Thêm vào Gió Hàng
-            				</button>
+			<a href="${pageContext.request.contextPath}/login" class="btn-buy">Thêm vào Gió Hàng</a>
+		<% 
+		} else {
+		%>
+			<a href="muahang.jsp" class="btn-buy">Mua ngay</a>
+            		<button type="submit" class="btn-buy" formaction="./AddToCartServlet?cid=<%= user.getCustomerId() %>
+            		&pid=<%= product.getProductId()%>">
+            		Thêm vào Gió Hàng
+            		</button>
         	<%
-			}
-			%>
+		}
+		%>
                 </div>
             				
 
