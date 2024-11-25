@@ -4,6 +4,7 @@
 
 <%
     // Lấy productId từ tham số request
+// Lấy object User từ session
 User user = (User) session.getAttribute("validateUser");
     String productIdParam = request.getParameter("productId");
     Product product = null;
