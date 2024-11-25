@@ -1,6 +1,7 @@
 package servlet;
 
-import DAO.UserLogin;
+import DAO.UserDAO;
+import model.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,12 +14,7 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserLogin loginDAO;
-
-    @Override
-    public void init() throws ServletException {
-        loginDAO = new UserLogin();
-    }
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,17 +30,18 @@ public class LoginServlet extends HttpServlet {
         // Thiết lập mã hóa
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-
+        UserDAO userDAO = new UserDAO();
         // Lấy dữ liệu từ form đăng nhập
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         // Kiểm tra thông tin đăng nhập
-        if (loginDAO.validateUser(username, password)) {
+        if (userDAO.validateUser(username, password)) {
             // Đăng nhập thành công, lưu thông tin vào session
+        	User user = userDAO.getUserByEmailPassword(username, password);
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-
+            session.setAttribute("validateUser", user);
+            
             // Chuyển hướng đến index.jsp
             response.sendRedirect("jsp/index.jsp");
         } else {
