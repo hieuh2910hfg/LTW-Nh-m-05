@@ -88,12 +88,13 @@
 <!-- Categories Section -->
 <section id="collections">
     <div class="category-grid">
-        <div class="category-item">
-            <a href="${pageContext.request.contextPath}/products?category=1">
-                <img src="${pageContext.request.contextPath}/images/Men's%20Clothing.png" width="300" height="300" alt="Áo Nam">
-                <h3>Áo Nam</h3>
-            </a>
-        </div>
+        <div class="product-item">
+                <a href="http://localhost:8080/BTL/jsp/productDetail.jsp?productId=111">
+                    <img src="https://cf.shopee.vn/file/0c89554a966ebca91752bc210c87c2d1" alt="New Clothing 1">
+                    Áo Dài Tay Có Cổ - UNIQLO
+                </a>
+                <p>300.000</p>
+            </div>
         <div class="category-item">
             <a href="${pageContext.request.contextPath}/products?category=2">
                 <img src="${pageContext.request.contextPath}/images/quannam.png" width="300" height="300" alt="Quần Nam">
