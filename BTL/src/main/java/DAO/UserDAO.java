@@ -25,7 +25,9 @@ public class UserDAO {
 	            e.printStackTrace();
 	            return false;
 	        }
+	    }
 
+	
  // Kiểm tra đăng nhập với bảng admin
     public boolean validateAdmin(String username, String password) {
         String sql = "SELECT * FROM admins WHERE username = ? AND passwordHash = ?";
@@ -43,7 +45,6 @@ public class UserDAO {
             return false;
         }
     }
-	    }
 	 
 	 public boolean registerUser(String firstname, String lastname, String username, String passwordHash, String email, String phonenumber) {
 	        String insertCustomerSQL = "INSERT INTO customers (first_name, last_name, username, passwordHash, email, phone_number) VALUES (?, ?, ?, ?, ?, ?)";
