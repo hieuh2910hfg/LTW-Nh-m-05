@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 
             // Kiểm tra đăng nhập cho customer
         } else if (userDAO.validateUser(username, password)) {
-            User user =  userDAO.getUserByUsernamePassword(username,passowrd);
+            User user =  userDAO.getUserByUsernamePassword(username,password);
             // Lưu thông tin customer vào session và chuyển hướng đến index.jsp
             HttpSession session = request.getSession();
             session.setAttribute("validateUser", user);
