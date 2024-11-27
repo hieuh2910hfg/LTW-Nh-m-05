@@ -17,6 +17,7 @@ public class Product {
     }
     // Constructor không có categoryId
     public Product(int productId,String description, double price, String productLinks) {
+        this.productId = productId;
         this.description = description;
         this.price = price;
         this.productLinks = productLinks;
