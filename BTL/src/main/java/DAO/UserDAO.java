@@ -25,6 +25,24 @@ public class UserDAO {
 	            e.printStackTrace();
 	            return false;
 	        }
+
+ // Kiểm tra đăng nhập với bảng admin
+    public boolean validateAdmin(String username, String password) {
+        String sql = "SELECT * FROM admins WHERE username = ? AND passwordHash = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next();  // Trả về true nếu có kết quả (admin hợp lệ)
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 	    }
 	 
 	 public boolean registerUser(String firstname, String lastname, String username, String passwordHash, String email, String phonenumber) {
