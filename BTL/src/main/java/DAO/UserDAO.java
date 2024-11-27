@@ -82,14 +82,14 @@ public class UserDAO {
 	            return false; // Đăng ký thất bại
 	        }
 	    }
-	 public User getUserByEmailPassword(String userEmail, String userPassword) {
+	 public User getUserByUsernamePassword(String username, String password) {
 		 User user = null;
 		 try {
 			Connection conn = DatabaseConnection.getConnection();
-					String query = "select * from customers where email = ? and passwordHash = ?";
+					String query = "select * from customers where username = ? and passwordHash = ?";
 					PreparedStatement psmt = conn.prepareStatement(query);
-					psmt.setString(1, userEmail);
-					psmt.setString(2, userPassword);
+					psmt.setString(1, username);
+					psmt.setString(2, password);
 
 					ResultSet rs = psmt.executeQuery();
 					while (rs.next()) {
