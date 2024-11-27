@@ -1,6 +1,7 @@
 package servlet;
 
-import DAO.UserLogin;
+import DAO.UserDAO;
+import model.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,11 +15,11 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserLogin loginDAO;
+    private UserDAO userDAO;
 
     @Override
     public void init() throws ServletException {
-        loginDAO = new UserLogin();
+        userDAO = new UserDAO();
     }
 
     @Override
@@ -41,7 +42,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         // Kiểm tra đăng nhập cho admin
-        if (loginDAO.validateAdmin(username, password)) {
+        if (userDAO.validateAdmin(username, password)) {
             // Lưu thông tin admin vào session và chuyển hướng đến products/list.jsp
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
@@ -49,10 +50,11 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("ProductServlet");
 
             // Kiểm tra đăng nhập cho customer
-        } else if (loginDAO.validateUser(username, password)) {
+        } else if (userDAO.validateUser(username, password)) {
+            User user =  userDAO.getUserByEmailPassword(username,passowrd);
             // Lưu thông tin customer vào session và chuyển hướng đến index.jsp
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+            session.setAttribute("validateUser", user);
             session.setAttribute("role", "customer");
             response.sendRedirect("jsp/index.jsp");
 
