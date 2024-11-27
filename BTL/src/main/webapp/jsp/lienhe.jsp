@@ -26,10 +26,13 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        .contact-info{
+            padding-bottom: 20px;
+        }
         .contact-info, .top-nav {
             display: flex;
             gap: 15px;
+            ;
         }
 
         .top-nav ul {
@@ -47,7 +50,7 @@
             text-decoration: none;
         }
         .top-nav ul li a:hover {
-            color: blue; /* Đổi màu chữ thành xanh dương khi hover */
+            color: #fec5c1;
         }
         .container {
             max-width: 1200px;
@@ -133,11 +136,60 @@
                               color: black;
                               text-decoration: none;
                               padding: 8px 0;
+                              white-space: nowrap;
                           }
 
                           .dropdown-content a:hover {
-                              background-color: #ddd;
+                              background-color: rgba(0, 0, 0, 0.2);
                           }
+        .footer-content {
+            padding-left:30px;
+            display: flex; /* Sử dụng Flexbox để căn chỉnh các box theo chiều ngang */
+            justify-content: space-between; /* Tạo khoảng cách đều giữa các phần tử */
+        }
+        .footer-content a{
+            text-decoration: none;
+            color:white;
+        }
+        .ff {
+            width: 30%; /* Đặt chiều rộng của mỗi box là 30% */
+            padding: 10px;
+            background-color: inherit;
+            text-align: left;
+        }
+        .hr2{
+            margin-left:0;
+            width:70px;
+            height: 3px;
+            color: white;
+            background-color: white;
+        }
+        .footer-content p{
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .nava a{
+            font-weight: bolder;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
     </style>
 </head>
 <body>
@@ -151,7 +203,7 @@
        </div>
 
         <nav class="top-nav">
-            <ul>
+            <ul class="nava">
                 <li></li>
                 <!-- Dropdown menu for products -->
                 <li class="dropdown">
@@ -183,15 +235,15 @@
     <div class="contact-info">
         <div>
             <h3>Địa chỉ</h3>
-            <p>123 Phố Thời Trang, Quận 1, TP. Hồ Chí Minh</p>
+            <p>Số 294, Phường Nguyễn Trác, Dương Nội, Hà Đông, Hà Nội </p>
         </div>
         <div>
             <h3>Email</h3>
-            <p>contact@stylenest.com</p>
+            <p>hieuh2910hfg123789@gmail.com</p>
         </div>
         <div>
             <h3>Điện thoại</h3>
-            <p>(+84) 123 456 789</p>
+            <p>(+84) 354 353 333</p>
         </div>
     </div>
 
@@ -210,3 +262,41 @@
             <button type="submit">Gửi</button>
         </form>
     </div>
+</div>
+</body>
+<footer>
+    <footer>
+        <div class="footer-content">
+            <div class="ff">
+                <h3>Kết nối với Style Nest</h3>
+                <hr class="hr2">
+                <h4>Follow Us</h4>
+                <a href="https://www.facebook.com/">Facebook</a>
+                <br>
+                <a href="https://www.youtube.com/">Youtube</a>
+                <br>
+                <a href="https://www.threads.net/">Threads</a>
+                <br>
+
+            </div>
+            <hr>
+            <div class="ff">
+                <h3>Style Nest</h3>
+                <hr class="hr2">
+                <a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a>
+                <br>
+                <a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a>
+            </div>
+            <hr>
+            <div class="ff">
+                <h3>Newsletter</h3>
+                <hr class="hr2">
+                <p>Hãy để lại email của bạn để nhận được những thông tin về sản phẩm và các ưu đãi từ Style Nest</p>
+                <br>
+                <p>Email: h2910hfg123789@gmail.com</p>
+            </div>
+        </div>
+        <p>&copy; 2024 StyleNest - All Rights Reserved</p>
+    </footer>
+</footer>
+</html>

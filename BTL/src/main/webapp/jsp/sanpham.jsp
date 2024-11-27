@@ -21,7 +21,9 @@
                       position: relative;
                       display: inline-block;
                   }
-
+                  .nava a{
+                      font-weight: bolder;
+                  }
                   .dropdown-content {
                       display: none;
                       position: absolute;
@@ -45,7 +47,9 @@
                   .dropdown-content a:hover {
                       background-color: #ddd;
                   }
-              </style>
+
+
+          </style>
 </head>
 <body>
 <!-- Header -->
@@ -58,7 +62,7 @@
        </div>
 
         <nav class="top-nav">
-            <ul>
+            <ul class="nava">
                 <li></li>
                 <!-- Dropdown menu for products -->
                 <li class="dropdown">
@@ -110,7 +114,9 @@
 
 %>
 
-<h2>Danh sách sản phẩm</h2>
+<h2 >Danh sách sản phẩm</h2>
+
+
 
 <%
   if (selectedProducts == null || selectedProducts.isEmpty()) {
@@ -194,4 +200,37 @@
 
 
 </body>
+<footer>
+    <div class="footer-content">
+        <div class="ff">
+            <h3>Kết nối với Style Nest</h3>
+            <hr class="hr2">
+            <h4>Follow Us</h4>
+            <a href="https://www.facebook.com/">Facebook</a>
+            <br>
+            <a href="https://www.youtube.com/">Youtube</a>
+            <br>
+            <a href="https://www.threads.net/">Threads</a>
+            <br>
+
+        </div>
+        <hr>
+        <div class="ff">
+            <h3>Style Nest</h3>
+            <hr class="hr2">
+            <a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a>
+            <br>
+            <a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a>
+        </div>
+        <hr>
+        <div class="ff">
+            <h3>Newsletter</h3>
+            <hr class="hr2">
+            <p>Hãy để lại email của bạn để nhận được những thông tin về sản phẩm và các ưu đãi từ Style Nest</p>
+            <br>
+            <p>Email: h2910hfg123789@gmail.com</p>
+        </div>
+    </div>
+    <p>&copy; 2024 StyleNest - All Rights Reserved</p>
+</footer>
 </html>
