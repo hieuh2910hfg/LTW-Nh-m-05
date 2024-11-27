@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.List, java.text.NumberFormat, java.util.Locale" %>
 <%@ page import="model.Product" %>
+<%
+ Locale locale = new Locale("vi", "VN");
 
+    // Get the currency instance for the locale
+    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+    %>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -128,7 +134,7 @@
         <a href="${pageContext.request.contextPath}/jsp/productDetail.jsp?productId=<%= product.getProductId() %>">
             <h3><%= product.getDescription() %></h3>
         </a>
-        <p><%= product.getPrice() %> VND</p>
+        <p><%=currencyFormatter.format(product.getPrice())  %></p>
     </div>
   </div>
   <%
