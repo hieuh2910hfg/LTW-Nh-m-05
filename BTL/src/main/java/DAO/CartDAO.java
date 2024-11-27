@@ -1,7 +1,7 @@
 package DAO;
 
 import model.Cart;
-import utilities.DatabaseConnection;
+import DAO.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
