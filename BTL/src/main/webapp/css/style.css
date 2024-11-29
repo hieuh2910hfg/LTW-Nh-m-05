@@ -105,7 +105,49 @@ header {
     color: white;
     border: none;
 }
-
+.search-form {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .search-form input {
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 400px;
+    }
+    .search-form button {
+        padding: 5px 10px;
+        margin-left: 5px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .search-form button:hover {
+        background-color: #0056b3;
+    }
+    .dropdown-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: black;
+        border: 1px #ccc;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+    .dropdown-suggestions div {
+        padding: 10px;
+        cursor: pointer;
+    }
+    .dropdown-suggestions div:hover {
+        background-color: #f0f0f0;
+    }
 /* Banner Section */
 .banner {
     background: url(../images/nen.png) center/cover no-repeat;
