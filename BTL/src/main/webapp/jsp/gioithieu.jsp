@@ -6,7 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giới Thiệu Shop Thời Trang</title>
-
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> 
+ 
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -255,6 +256,47 @@
     </div>
     <p>&copy; 2024 StyleNest - All Rights Reserved</p>
 </footer>
+<script>
+const searchInput = document.getElementById('searchInput');
+const suggestions = document.getElementById('suggestions');
+console.log(searchInput);
+console.log(suggestions);
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim();
+    console.log(query);
+    if (query.length > 0) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `${pageContext.request.contextPath}/Search?query=` + query, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const responseText = xhr.responseText;
+                const productNames = responseText.split(","); // Chia chuỗi thành mảng
+                suggestions.innerHTML = '';
+                productNames.forEach(productName => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.textContent = productName.trim();
+                    suggestionItem.addEventListener('click', () => {
+                        searchInput.value = productName.trim();
+                        suggestions.innerHTML = '';
+                        window.location.href = `${pageContext.request.contextPath}/jsp/productDetail.jsp?query=`+ productName.trim();
+                    });
+                    suggestions.appendChild(suggestionItem);
+              
+                });
+            }
+        };
+        xhr.send();
+    } else {
+        suggestions.innerHTML = '';
+    }
+});
 
+document.addEventListener('click', (e) => {
+    if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+        suggestions.innerHTML = '';
+    }
+});
+
+</script>
 </body>
 </html>
