@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.List, java.text.NumberFormat, java.util.Locale" %>
 <%@ page import="model.Product" %>
