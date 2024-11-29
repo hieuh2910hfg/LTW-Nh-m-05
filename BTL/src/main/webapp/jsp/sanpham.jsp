@@ -131,7 +131,10 @@
     selectedProducts = (List<Product>) request.getAttribute("phukien");
   }else if ("0".equals(categoryParam)) {
        selectedProducts = (List<Product>) request.getAttribute("allProducts");
+     }else{
+    	 selectedProducts = (List<Product>) request.getAttribute("selectedProducts");
      }
+
 
 %>
 
