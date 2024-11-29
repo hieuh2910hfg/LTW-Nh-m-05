@@ -61,7 +61,13 @@
               <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" width = 250px height = 75px>
           </a>
        </div>
-
+ <div>
+       <form action="${pageContext.request.contextPath}/Search" method="GET" class="search-form">
+    <input type="text" id="searchInput" name="query" placeholder="Search products..." autocomplete="off" required>
+    <button type="submit" formaction="${pageContext.request.contextPath}/products?query=0&category=0">Search</button>
+    <div id="suggestions" class="dropdown-suggestions"></div>
+</form>
+       </div>
         <nav class="top-nav">
             <ul class="nava">
                 <li></li>
