@@ -68,7 +68,29 @@ public class ProductDAO {
 
         return product;
     }
+ public Product getProductByName(String name) {
+        Product product = null;
+        String query = "SELECT product_id, description, price, product_links FROM products WHERE description = ?";
 
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, name);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int productId = rs.getInt("product_id");
+                String description = rs.getString("description");
+                double price = rs.getDouble("price");
+                String productLinks = rs.getString("product_links");
+
+                product = new Product(productId, description, price, productLinks);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
 
 
 }
