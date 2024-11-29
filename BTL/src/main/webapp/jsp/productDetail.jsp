@@ -13,9 +13,15 @@
     // Lấy productId từ tham số request
 	User user = (User) session.getAttribute("validateUser");
     String productIdParam = request.getParameter("productId");
+   String productNameParam = request.getParameter("query");
     CartDAO cartDAO = new CartDAO();
     Product product = null;
-
+	if (productNameParam != null) {
+		ProductDAO productDAO = new ProductDAO();
+		product = productDAO.getProductByName(productNameParam);
+	}
+	else{
+	
     if (productIdParam != null) {
         try {
             // Chuyển đổi productId thành số nguyên
