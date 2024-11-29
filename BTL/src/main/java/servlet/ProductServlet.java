@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Product;
+import utilities.SearchServlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/products")
@@ -25,6 +27,7 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy tham số category từ URL (nếu có)
         String categoryParam = request.getParameter("category");
+        String nameParam = request.getParameter("query");
         int categoryId = 0; // Mặc định là lấy tất cả sản phẩm
 
         // Nếu có tham số category thì sử dụng, nếu không thì lấy tất cả sản phẩm
@@ -47,12 +50,21 @@ public class ProductServlet extends HttpServlet {
         List<Product> vaynu = productDAO.getProductsByCategory(24); // Váy nữ
         List<Product> phukien = productDAO.getProductsByCategory(31); // Phụ kiện
         List<Product> allProducts = productDAO.getProductsByCategory(0); // Tất cả sản phẩm
-
         List<Product> selectedProducts = null;
 
         // Lấy sản phẩm theo categoryId
         if (categoryId == 0) {
-            selectedProducts = allProducts; // Nếu categoryId = 0, lấy tất cả sản phẩm
+        		if (nameParam != null) {
+        			selectedProducts = new ArrayList<Product>();
+        			for (Product product : allProducts) {
+        				if (product.getDescription().toLowerCase().contains(nameParam.toLowerCase())) {
+        					selectedProducts.add(product);
+        				
+        					}
+        			}
+        		}else {
+        			selectedProducts = allProducts; // Nếu categoryId = 0, lấy tất cả sản phẩm 
+				}
         } else if (categoryId == 11) {
             selectedProducts = aonam;
         } else if (categoryId == 12) {
