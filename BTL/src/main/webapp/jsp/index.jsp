@@ -20,7 +20,13 @@
               <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" width = 250px height = 75px>
           </a>
        </div>
-
+   <div>
+       <form action="${pageContext.request.contextPath}/Search" method="GET" class="search-form">
+    <input type="text" id="searchInput" name="query" placeholder="Search products..." autocomplete="off" required>
+    <button type="submit" formaction="${pageContext.request.contextPath}/products?query=0&category=0">Search</button>
+    <div id="suggestions" class="dropdown-suggestions"></div>
+</form>
+       </div>
         <nav class="top-nav">
             <ul class="nava">
                 <li></li>
@@ -300,6 +306,49 @@
         </div>
         <p>&copy; 2024 StyleNest - All Rights Reserved</p>
     </footer>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const suggestions = document.getElementById('suggestions');
+console.log(searchInput);
+console.log(suggestions);
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim();
+    console.log(query);
+    if (query.length > 0) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `${pageContext.request.contextPath}/Search?query=` + query, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const responseText = xhr.responseText;
+                const productNames = responseText.split(","); // Chia chuỗi thành mảng
+                suggestions.innerHTML = '';
+                productNames.forEach(productName => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.textContent = productName.trim();
+                    suggestionItem.addEventListener('click', () => {
+                        searchInput.value = productName.trim();
+                        suggestions.innerHTML = '';
+                        window.location.href = `${pageContext.request.contextPath}/jsp/productDetail.jsp?query=`+ productName.trim();
+                    });
+                    suggestions.appendChild(suggestionItem);
+              
+                });
+            }
+        };
+        xhr.send();
+    } else {
+        suggestions.innerHTML = '';
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+        suggestions.innerHTML = '';
+    }
+});
+
+</script>
 </body>
 </html>
 
