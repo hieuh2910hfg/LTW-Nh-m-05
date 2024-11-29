@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
             // Lưu thông tin customer vào session và chuyển hướng đến index.jsp
             HttpSession session = request.getSession();
             session.setAttribute("validateUser", user);
+            session.setAttribute("username", username);
             session.setAttribute("role", "customer");
             response.sendRedirect("jsp/index.jsp");
 

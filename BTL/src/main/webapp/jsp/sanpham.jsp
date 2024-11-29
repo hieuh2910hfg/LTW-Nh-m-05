@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.List, java.text.NumberFormat, java.util.Locale" %>
 <%@ page import="model.Product" %>
+<%@ page session="true" %>
 <%
  Locale locale = new Locale("vi", "VN");
 
@@ -80,8 +81,28 @@
                 </li>
                 <li><a href="${pageContext.request.contextPath}/jsp/gioithieu.jsp">Giới Thiệu</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/lienhe.jsp">Liên Hệ</a></li>
-                <li><a href="${pageContext.request.contextPath}/login" class="login-button">Đăng nhập</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/toi.jsp">Tôi</a></li>
+                <%
+                    String username = (String) session.getAttribute("username");
+                %>
+                <li>
+                    <% if (username != null) { %>
+                        <!-- Hiển thị nút Đăng xuất -->
+                        <a href="${pageContext.request.contextPath}/logout" class="logout-button">Đăng xuất</a>
+                    <% } else { %>
+                        <!-- Hiển thị nút Đăng nhập -->
+                        <a href="${pageContext.request.contextPath}/login" class="login-button">Đăng nhập</a>
+                    <% } %>
+                </li>
+                <li>
+                    <% if (username != null) { %>
+                        <!-- Hiển thị tên người dùng -->
+                        <a href="${pageContext.request.contextPath}/jsp/toi.jsp" class="username-link"><%= username %></a>
+                    <% } else { %>
+                        <!-- Hiển thị nút "Tôi" -->
+                        <a href="${pageContext.request.contextPath}/jsp/toi.jsp" class="profile-link">Tôi</a>
+                    <% } %>
+                </li>
+
             </ul>
         </nav>
     </div>

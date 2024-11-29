@@ -1,19 +1,18 @@
 package servlet;
 
+import DAO.CartDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import model.Cart;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import DAO.CartDAO;
-
-
+@WebServlet("/AddToCartServlet")
 public class AddToCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -40,8 +39,9 @@ public class AddToCartServlet extends HttpServlet {
 			      
 
 			}
-			
-		
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/productDetail.jsp");
+		dispatcher.forward(request, response);
 
 	}
 

@@ -2,6 +2,7 @@
 <%@ page import="java.util.List, java.text.NumberFormat, java.util.Locale" %>
 <%@ page import="jakarta.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="true" %>
 <%
  Locale locale = new Locale("vi", "VN");
 
